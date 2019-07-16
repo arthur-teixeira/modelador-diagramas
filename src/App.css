@@ -2,6 +2,8 @@
 .srd-canvas {
    height: 90vh;
    background:#3c3c3c;
+   background-image: linear-gradient(0deg, transparent 24%, rgba(255, 255, 255, 0.05) 25%, rgba(255, 255, 255, 0.05) 26%, transparent 27%, transparent 74%, rgba(255, 255, 255, 0.05) 75%, rgba(255, 255, 255, 0.05) 76%, transparent 77%, transparent), linear-gradient(90deg, transparent 24%, rgba(255, 255, 255, 0.05) 25%, rgba(255, 255, 255, 0.05) 26%, transparent 27%, transparent 74%, rgba(255, 255, 255, 0.05) 75%, rgba(255, 255, 255, 0.05) 76%, transparent 77%, transparent);
+   background-size: 50px 50px;
 }
 
 *{
@@ -13,4 +15,14 @@
 
 li {
    color: white;
+}
+
+.tray-item{
+   color: white;
+   padding: 5px;
+   display: inline-block;
+   margin: 10px 15px;
+   cursor: move;
+   border: 1px solid white;
+   border-radius: 5px;
 }
