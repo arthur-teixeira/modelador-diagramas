@@ -4,7 +4,9 @@ import CanvasBox from './components/CanvasBox'
 
 function App() {
   return (
-    <CanvasBox />
+    <>
+      <CanvasBox />
+    </>
   );
 }
 
