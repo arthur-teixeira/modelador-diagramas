@@ -43,8 +43,8 @@ class Diagram extends Component {
                   this.engine.getDiagramModel().addNode(node);
                   this.forceUpdate();
                }}
-               onDragOver={event => {
-                  event.preventDefault();
+               onDragOver={e => {
+                  e.preventDefault();
                }}
             >
                <DiagramWidget className="srd-canvas" diagramEngine={this.engine} />
