@@ -1,0 +1,16 @@
+
+pagina inicial com diagramas salvos - 9 a 11/08
+
+implementar react router - 12 a 14/08
+
+serializar diagrama e enviar ao backend - 15 a 19/08 
+
+enviar dados personalizados ao backend - 15 a 19/08
+
+atualizar diagrama salvo no backend - 20 a 23/08
+
+atualizar layout do menu na pagina de diagramas - 23 até 26/08
+
+implementar context API - 27/08 até entrega
+
+	
