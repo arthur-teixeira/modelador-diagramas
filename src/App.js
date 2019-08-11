@@ -1,11 +1,14 @@
 import React from 'react';
 import './App.css';
-import CanvasBox from './components/CanvasBox'
+// import CanvasBox from './components/CanvasBox'
+import LoadPage from './components/load/LoadPage'
+
 
 function App() {
   return (
     <>
-      <CanvasBox />
+      <LoadPage />
+      {/* <CanvasBox /> */}
     </>
   );
 }
