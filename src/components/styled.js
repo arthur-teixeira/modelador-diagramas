@@ -9,29 +9,58 @@ export const Button = styled.button`
 `
 
 export const Container = styled.div`
-   background-color: #1e1e1e;
-   height:100vh;
+   background-color:#1e1e1e;
+   color: white;
+   padding-top:10px;
 `
+
+export const DiagramContainer = styled(Container)`
+   height:90vh;
+`
+
 
 export const Card = styled.div`
    background:#3c3c3c;
-   color: white;
    padding: 1%;
    border-radius: 5px;
    &:hover {
       transform: scale(1.02);
       transition: 0.2s;
    }
-   
-   
 `
 
-export const GridWrapper = styled.div`
+export const Grid = styled.div`
    display:grid;
+   grid-auto-rows: minmax(10vh, auto);
+   
+`
+export const GridWrapper = styled(Grid)`
    grid-template-columns: repeat(3, 1fr);
    grid-gap: 1rem;
-   grid-auto-rows: minmax(10vh, auto);
-   background: #1e1e1e;
    padding: 1rem;
-   
+`
+
+export const FlexWrapper = styled.ul`
+   display:flex;
+   align-items: center;
+   justify-content: center;
+   justify-self: flex-end;
+`
+
+export const FlexLi = styled.li`
+   padding: 1.2rem
+`
+
+export const Header = styled.div`
+   padding: 10%;
+   display:flex;
+   flex-direction: column;
+   align-items:center;  
+   background: #3c3c3c;
+`
+export const Navbar = styled.div`
+   display: grid;
+   grid-template-columns: repeat(2, 1fr);
+   width: 80%;
+   margin: auto;
 `
