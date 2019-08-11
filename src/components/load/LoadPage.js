@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
-import api from '../api/axios'
 import axios from 'axios'
-import { Card, GridWrapper, Container } from './styled'
+import { Card, GridWrapper, Container } from '../styled'
 import LoadHeader from './LoadHeader'
 
 
@@ -20,7 +19,7 @@ export default class LoadPage extends Component {
 
    render() {
       return (
-         <>
+         <Container>
             <LoadHeader />
             <GridWrapper>
                {this.state.data.map(item => (
@@ -30,7 +29,7 @@ export default class LoadPage extends Component {
                   </Card>
                ))}
             </GridWrapper>
-         </>
+         </Container>
       )
    }
 }

@@ -23,9 +23,9 @@ class Diagram extends Component {
             <div
                className="diagram-layer"
                onDrop={event => {
-                  var data = JSON.parse(event.dataTransfer.getData('storm-diagram-node'));
-                  var nodesCount = Lodash.keys(this.engine.getDiagramModel().getNodes()).length + 1;
-                  var node = null;
+                  let data = JSON.parse(event.dataTransfer.getData('storm-diagram-node'));
+                  let nodesCount = Lodash.keys(this.engine.getDiagramModel().getNodes()).length + 1;
+                  let node = null;
                   if (data.type === 'in') {
                      node = new DefaultNodeModel('Node ' + (nodesCount++), '#00c0ff');
                      node.addPort(new DefaultPortModel(true, 'in-1', 'In'));
@@ -37,7 +37,7 @@ class Diagram extends Component {
                      node.addPort(new DefaultPortModel(true, 'in-1', 'In'));
                      node.addPort(new DefaultPortModel(false, 'out-1', 'Out'));
                   }
-                  var points = this.engine.getRelativeMousePoint(event);
+                  let points = this.engine.getRelativeMousePoint(event);
                   node.x = points.x;
                   node.y = points.y;
                   this.engine.getDiagramModel().addNode(node);
