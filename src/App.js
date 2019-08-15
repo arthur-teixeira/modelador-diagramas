@@ -1,15 +1,10 @@
 import React from 'react';
 import './App.css';
-// import CanvasBox from './components/CanvasBox'
-import LoadPage from './components/load/LoadPage'
-
+import Router from './components/routes/Router'
 
 function App() {
   return (
-    <>
-      <LoadPage />
-      {/* <CanvasBox /> */}
-    </>
+    <Router />
   );
 }
 

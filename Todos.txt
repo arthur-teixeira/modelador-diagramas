@@ -9,8 +9,8 @@ enviar dados personalizados ao backend - 15 a 19/08
 
 atualizar diagrama salvo no backend - 20 a 23/08
 
-atualizar layout do menu na pagina de diagramas - 23 até 26/08
+atualizar layout do menu na pagina de diagramas - 23 a 26/08
 
-implementar context API - 27/08 até entrega
+implementar context API - 27/08 atÃ© entrega 
 
 	

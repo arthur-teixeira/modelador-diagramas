@@ -1,20 +1,11 @@
 import React from 'react'
-import { Header, Navbar, FlexWrapper, FlexLi } from '../styled'
+import { Header, FlexWrapper, FlexLi } from '../styled'
+import Navbar from './Navbar'
 
 export default () => {
    return (
       <>
-         <Navbar>
-            <h1 style={{ alignSelf: 'center' }}>Modelador</h1>
-            <FlexWrapper>
-               <FlexLi>
-                  Logout
-               </FlexLi>
-               <FlexLi>
-                  Novo diagrama
-               </FlexLi>
-            </FlexWrapper>
-         </Navbar>
+         <Navbar />
          <Header>
             <h1>Bem vindo, (username)</h1>
             <br />
