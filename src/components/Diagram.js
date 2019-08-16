@@ -4,10 +4,11 @@ import {
    DefaultNodeFactory,
    DefaultLinkFactory,
    DefaultNodeModel,
-   DefaultPortModel
+   DefaultPortModel,
 } from 'storm-react-diagrams';
 import React, { Component } from 'react'
-import Lodash from 'lodash'
+import Lodash from 'lodash';
+import api from '../api/axios';
 
 import 'storm-react-diagrams/dist/style.min.css'
 
@@ -17,13 +18,20 @@ class Diagram extends Component {
       this.engine.registerNodeFactory(new DefaultNodeFactory());
       this.engine.registerLinkFactory(new DefaultLinkFactory());
    }
+
+
+   handleClick = async e => {
+      const str = this.engine.getDiagramModel().serializeDiagram();
+      const response = await api.post('diagrams', str);
+   }
+
    render() {
       return (
          <div className="content">
             <div
                className="diagram-layer"
-               onDrop={event => {
-                  let data = JSON.parse(event.dataTransfer.getData('storm-diagram-node'));
+               onDrop={e => {
+                  let data = JSON.parse(e.dataTransfer.getData('storm-diagram-node'));
                   let nodesCount = Lodash.keys(this.engine.getDiagramModel().getNodes()).length + 1;
                   let node = null;
                   if (data.type === 'in') {
@@ -37,7 +45,7 @@ class Diagram extends Component {
                      node.addPort(new DefaultPortModel(true, 'in-1', 'In'));
                      node.addPort(new DefaultPortModel(false, 'out-1', 'Out'));
                   }
-                  let points = this.engine.getRelativeMousePoint(event);
+                  let points = this.engine.getRelativeMousePoint(e);
                   node.x = points.x;
                   node.y = points.y;
                   this.engine.getDiagramModel().addNode(node);
@@ -45,8 +53,7 @@ class Diagram extends Component {
                }}
                onDragOver={e => {
                   e.preventDefault();
-               }}
-            >
+               }}>
                <DiagramWidget className="srd-canvas" diagramEngine={this.engine} />
             </div>
          </div>

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Header, FlexWrapper, FlexLi } from '../styled'
+import { Header } from '../styled'
 import Navbar from './Navbar'
 
 export default () => {
