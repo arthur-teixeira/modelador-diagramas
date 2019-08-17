@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
-import axios from 'axios'
+import api from '../../api/axios'
 import { Card, GridWrapper, Container } from '../styled'
 import LoadHeader from './LoadHeader'
+import { Link } from 'react-router-dom'
 
 
 export default class LoadPage extends Component {
@@ -11,7 +12,7 @@ export default class LoadPage extends Component {
    }
 
    async componentDidMount() {
-      const response = await axios.get('https://jsonplaceholder.typicode.com/posts/')
+      const response = await api.get('diagrams')
       const data = response.data
       console.log(data)
       this.setState({ data })
@@ -22,11 +23,12 @@ export default class LoadPage extends Component {
          <Container>
             <LoadHeader />
             <GridWrapper>
-               {this.state.data.map(item => (
-                  <Card key={item.id}>
-                     <h3>{item.title}</h3 >
-                     <p>{item.body}</p>
-                  </Card>
+               {this.state.data.map((item, i) => (
+                  <Link to="/canvas">
+                     <Card key={i}>
+                        <h3>{item.diagram.name}</h3 >
+                     </Card>
+                  </Link>
                ))}
             </GridWrapper>
          </Container>

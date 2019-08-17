@@ -9,6 +9,7 @@ import {
 import React, { Component } from 'react'
 import Lodash from 'lodash';
 import api from '../api/axios';
+import { Button } from './styled'
 
 import 'storm-react-diagrams/dist/style.min.css'
 
@@ -17,46 +18,55 @@ class Diagram extends Component {
       this.engine = new DiagramEngine();
       this.engine.registerNodeFactory(new DefaultNodeFactory());
       this.engine.registerLinkFactory(new DefaultLinkFactory());
+      this.renderProps = this.props.renderProps;
    }
 
 
-   handleClick = async e => {
-      const str = this.engine.getDiagramModel().serializeDiagram();
-      const response = await api.post('diagrams', str);
+   postResponse = async e => {
+      const data = this.engine.getDiagramModel().serializeDiagram();
+      let counter = 0;
+      const response = await api.post('diagrams', {
+         data,
+         name: "diagrama" + counter++
+      });
+      console.log(response)
    }
-
    render() {
       return (
-         <div className="content">
-            <div
-               className="diagram-layer"
-               onDrop={e => {
-                  let data = JSON.parse(e.dataTransfer.getData('storm-diagram-node'));
-                  let nodesCount = Lodash.keys(this.engine.getDiagramModel().getNodes()).length + 1;
-                  let node = null;
-                  if (data.type === 'in') {
-                     node = new DefaultNodeModel('Node ' + (nodesCount++), '#00c0ff');
-                     node.addPort(new DefaultPortModel(true, 'in-1', 'In'));
-                  } else if (data.type === 'out') {
-                     node = new DefaultNodeModel('Node ' + (nodesCount++), '#c0ff00');
-                     node.addPort(new DefaultPortModel(false, 'out-1', 'Out'));
-                  } else if (data.type === 'in/out') {
-                     node = new DefaultNodeModel('Node ' + (nodesCount++), '#c000ff');
-                     node.addPort(new DefaultPortModel(true, 'in-1', 'In'));
-                     node.addPort(new DefaultPortModel(false, 'out-1', 'Out'));
-                  }
-                  let points = this.engine.getRelativeMousePoint(e);
-                  node.x = points.x;
-                  node.y = points.y;
-                  this.engine.getDiagramModel().addNode(node);
-                  this.forceUpdate();
-               }}
-               onDragOver={e => {
-                  e.preventDefault();
-               }}>
-               <DiagramWidget className="srd-canvas" diagramEngine={this.engine} />
+         <>
+            <Button onClick={this.postResponse}>Salvar diagrama</Button>
+            <div className="content">
+               <div
+                  className="diagram-layer"
+                  onDrop={e => {
+                     let data = JSON.parse(e.dataTransfer.getData('storm-diagram-node'));
+                     let nodesCount = Lodash.keys(this.engine.getDiagramModel().getNodes()).length + 1;
+                     let node = null;
+                     if (data.type === 'in') {
+                        node = new DefaultNodeModel('Node ' + (nodesCount++), '#00c0ff');
+                        node.addPort(new DefaultPortModel(true, 'in-1', 'In'));
+                     } else if (data.type === 'out') {
+                        node = new DefaultNodeModel('Node ' + (nodesCount++), '#c0ff00');
+                        node.addPort(new DefaultPortModel(false, 'out-1', 'Out'));
+                     } else if (data.type === 'in/out') {
+                        node = new DefaultNodeModel('Node ' + (nodesCount++), '#c000ff');
+                        node.addPort(new DefaultPortModel(true, 'in-1', 'In'));
+                        node.addPort(new DefaultPortModel(false, 'out-1', 'Out'));
+                     }
+                     let points = this.engine.getRelativeMousePoint(e);
+                     node.x = points.x;
+                     node.y = points.y;
+                     this.engine.getDiagramModel().addNode(node);
+                     this.forceUpdate();
+                  }}
+                  onDragOver={e => {
+                     e.preventDefault();
+                  }}>
+                  <DiagramWidget className="srd-canvas" diagramEngine={this.engine} />
+               </div>
             </div>
-         </div>
+
+         </>
       );
    }
 }
