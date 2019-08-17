@@ -12,6 +12,7 @@ export const Container = styled.div`
    background-color:#1e1e1e;
    color: white;
    padding-top:10px;
+   margin: auto;
 `
 
 export const DiagramContainer = styled(Container)`

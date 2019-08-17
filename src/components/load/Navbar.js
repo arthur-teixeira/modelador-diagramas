@@ -10,11 +10,6 @@ export default props => {
             <FlexLi onClick={props.toggle}>
                {props.buttonName}
             </FlexLi>
-            <FlexLi>
-               <Link to="/canvas">
-                  Novo diagrama
-               </Link>
-            </FlexLi>
          </FlexWrapper>
       </Navbar>
    )
