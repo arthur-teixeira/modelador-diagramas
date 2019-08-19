@@ -18,19 +18,44 @@ class Diagram extends Component {
       this.engine = new DiagramEngine();
       this.engine.registerNodeFactory(new DefaultNodeFactory());
       this.engine.registerLinkFactory(new DefaultLinkFactory());
-      this.renderProps = this.props.renderProps;
    }
 
+   state = {
+      serial: {}
+   }
 
    postResponse = async e => {
       const data = this.engine.getDiagramModel().serializeDiagram();
-      let counter = 0;
       const response = await api.post('diagrams', {
          data,
-         name: "diagrama" + counter++
+         name: "diagrama"
       });
       console.log(response)
    }
+
+   handleDrop = e => {
+      let data = JSON.parse(e.dataTransfer.getData('storm-diagram-node'));
+      let nodesCount = Lodash.keys(this.engine.getDiagramModel().getNodes()).length + 1;
+      let node = null;
+      if (data.type === 'in') {
+         node = new DefaultNodeModel('Node ' + (nodesCount++), '#00c0ff');
+         node.addPort(new DefaultPortModel(true, 'in-1', 'In'));
+      } else if (data.type === 'out') {
+         node = new DefaultNodeModel('Node ' + (nodesCount++), '#c0ff00');
+         node.addPort(new DefaultPortModel(false, 'out-1', 'Out'));
+      } else if (data.type === 'in/out') {
+         node = new DefaultNodeModel('Node ' + (nodesCount++), '#c000ff');
+         node.addPort(new DefaultPortModel(true, 'in-1', 'In'));
+         node.addPort(new DefaultPortModel(false, 'out-1', 'Out'));
+      }
+      let points = this.engine.getRelativeMousePoint(e);
+      node.x = points.x;
+      node.y = points.y;
+      this.engine.getDiagramModel().addNode(node);
+      this.forceUpdate();
+   }
+
+
    render() {
       return (
          <>
@@ -38,27 +63,7 @@ class Diagram extends Component {
             <div className="content">
                <div
                   className="diagram-layer"
-                  onDrop={e => {
-                     let data = JSON.parse(e.dataTransfer.getData('storm-diagram-node'));
-                     let nodesCount = Lodash.keys(this.engine.getDiagramModel().getNodes()).length + 1;
-                     let node = null;
-                     if (data.type === 'in') {
-                        node = new DefaultNodeModel('Node ' + (nodesCount++), '#00c0ff');
-                        node.addPort(new DefaultPortModel(true, 'in-1', 'In'));
-                     } else if (data.type === 'out') {
-                        node = new DefaultNodeModel('Node ' + (nodesCount++), '#c0ff00');
-                        node.addPort(new DefaultPortModel(false, 'out-1', 'Out'));
-                     } else if (data.type === 'in/out') {
-                        node = new DefaultNodeModel('Node ' + (nodesCount++), '#c000ff');
-                        node.addPort(new DefaultPortModel(true, 'in-1', 'In'));
-                        node.addPort(new DefaultPortModel(false, 'out-1', 'Out'));
-                     }
-                     let points = this.engine.getRelativeMousePoint(e);
-                     node.x = points.x;
-                     node.y = points.y;
-                     this.engine.getDiagramModel().addNode(node);
-                     this.forceUpdate();
-                  }}
+                  onDrop={this.handleDrop}
                   onDragOver={e => {
                      e.preventDefault();
                   }}>

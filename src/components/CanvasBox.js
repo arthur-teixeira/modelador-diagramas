@@ -30,7 +30,7 @@ export default class CanvasBox extends Component {
                   )}
                </>
             )} />
-            <Diagram serial={this.state.diagramData ? this.state.diagramData : null} />
+            <Diagram serial={this.state.diagramData} />
          </Container>
       )
    }
