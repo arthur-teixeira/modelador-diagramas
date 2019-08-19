@@ -32,7 +32,7 @@ export const Card = styled.div`
 
 export const Grid = styled.div`
    display:grid;
-   grid-auto-rows: minmax(10vh, auto);
+   
    
 `
 export const GridWrapper = styled(Grid)`
