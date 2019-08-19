@@ -8,7 +8,8 @@ const Router = () => {
    return (
       <BrowserRouter>
          <Route path="/" exact component={LoadPage} />
-         <Route path="/canvas" component={CanvasBox} />
+         <Route exact path="/canvas" component={CanvasBox} />
+         <Route path="/canvas/:diagramId" component={CanvasBox} />
       </BrowserRouter>
    );
 }

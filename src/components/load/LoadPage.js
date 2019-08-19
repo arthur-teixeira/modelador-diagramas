@@ -14,7 +14,6 @@ export default class LoadPage extends Component {
    async componentDidMount() {
       const response = await api.get('diagrams')
       const data = response.data
-      console.log(data)
       this.setState({ data })
    }
 
@@ -23,9 +22,9 @@ export default class LoadPage extends Component {
          <Container>
             <LoadHeader />
             <GridWrapper>
-               {this.state.data.map((item, i) => (
-                  <Link to="/canvas">
-                     <Card key={i}>
+               {this.state.data.map((item) => (
+                  <Link key={item._id} to={`/canvas/${item._id}`}>
+                     <Card>
                         <h3>{item.diagram.name}</h3 >
                      </Card>
                   </Link>
