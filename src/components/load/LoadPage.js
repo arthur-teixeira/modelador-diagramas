@@ -25,7 +25,7 @@ export default class LoadPage extends Component {
                {this.state.data.map((item) => (
                   <Link key={item._id} to={`/canvas/${item._id}`}>
                      <Card>
-                        <h3>{item.diagram.name}</h3 >
+                        <h3>{item.diagram.name}</h3>
                      </Card>
                   </Link>
                ))}
