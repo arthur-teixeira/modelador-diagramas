@@ -8,8 +8,9 @@ import {
 } from 'storm-react-diagrams';
 import React, { Component } from 'react'
 import Lodash from 'lodash';
-import api from '../api/axios';
-import { Button } from './styled'
+import api from '../../api/axios'
+import { Button } from '../styled'
+
 
 import 'storm-react-diagrams/dist/style.min.css'
 
@@ -24,7 +25,7 @@ class Diagram extends Component {
       serial: {}
    }
 
-   postResponse = async e => {
+   saveDiagram = async e => {
       const data = this.engine.getDiagramModel().serializeDiagram();
       const response = await api.post('diagrams', {
          data,
@@ -59,7 +60,7 @@ class Diagram extends Component {
    render() {
       return (
          <>
-            <Button onClick={this.postResponse}>Salvar diagrama</Button>
+            <Button onClick={this.saveDiagram}>Salvar diagrama</Button>
             <div className="content">
                <div
                   className="diagram-layer"

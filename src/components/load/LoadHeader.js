@@ -10,7 +10,7 @@ export default () => {
          <Header>
             <h1>Bem vindo, (username)</h1>
             <br />
-            <Link to="/canvas">
+            <Link to="/newCanvas">
                Novo diagrama
             </Link>
             <br />
