@@ -2,6 +2,7 @@ import React from 'react'
 import CanvasBox from './CanvasBox'
 import Diagram from './Diagram'
 import LoadDiagram from './LoadDiagram'
+import { DiagramProvider } from './DiagramContext'
 
 export const Canvas = () => {
    return (
@@ -11,10 +12,12 @@ export const Canvas = () => {
    )
 }
 
-export const loadCanvas = () => {
+export const loadCanvas = props => {
    return (
       <CanvasBox>
-         <LoadDiagram />
+         <DiagramProvider value={props.match.params}>
+            <LoadDiagram />
+         </DiagramProvider>
       </CanvasBox>
    )
 }

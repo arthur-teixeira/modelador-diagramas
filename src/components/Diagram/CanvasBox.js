@@ -6,7 +6,6 @@ import NavbarComponent from '../load/Navbar'
 // import api from '../../api/axios'
 
 export default props => {
-
    return (
       <Container>
          <Toggle render={({ on, toggle }) => (
