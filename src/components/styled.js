@@ -49,11 +49,11 @@ export const FlexWrapper = styled.ul`
 `
 
 export const FlexLi = styled.li`
-   padding: 1.2rem
+   padding: 1.2rem;
 `
 
 export const Header = styled.div`
-   padding: 10%;
+padding: 10%;
    display:flex;
    flex-direction: column;
    align-items:center;  
@@ -64,4 +64,12 @@ export const Navbar = styled.div`
    grid-template-columns: repeat(2, 1fr);
    width: 80%;
    margin: auto;
+`
+
+export const Textarea = styled.textarea`
+   width: 50%;
+   margin:auto;
+   resize: none;
+   height: 65vh;
+   margin: 5% 25%;
 `
