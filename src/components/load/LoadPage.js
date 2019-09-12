@@ -12,9 +12,10 @@ export default class LoadPage extends Component {
    }
 
    async componentDidMount() {
-      const response = await api.get('diagrams')
+      const response = await api.get('diagramas/listar')
       const data = response.data
-      this.setState({ data })
+      // this.setState({ data })
+      console.log(response)
    }
 
    render() {
