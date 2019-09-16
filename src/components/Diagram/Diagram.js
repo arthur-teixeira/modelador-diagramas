@@ -27,7 +27,7 @@ class Diagram extends Component {
 
    saveDiagram = async e => {
       const data = this.engine.getDiagramModel().serializeDiagram();
-      const response = await api.post('diagrams', {
+      const response = await api.post('inserir', {
          data,
          name: "diagrama"
       });

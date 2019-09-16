@@ -14,11 +14,11 @@ export const Canvas = () => {
 
 export const loadCanvas = props => {
    return (
-      // <CanvasBox>
-      <DiagramProvider value={props.match.params}>
-         <LoadDiagram />
-      </DiagramProvider>
-      /* </CanvasBox> */
+      <CanvasBox>
+         <DiagramProvider value={props.match.params}>
+            <LoadDiagram />
+         </DiagramProvider>
+      </CanvasBox>
    )
 }
 

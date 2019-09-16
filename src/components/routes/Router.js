@@ -9,7 +9,7 @@ const Router = () => {
       <BrowserRouter>
          <Route path="/" exact component={LoadPage} />
          <Route exact path="/newCanvas" component={Canvas} />
-         <Route path="/canvas/:diagramId" component={loadCanvas} />
+         <Route path="/canvas/:id" component={loadCanvas} />
       </BrowserRouter>
    );
 }

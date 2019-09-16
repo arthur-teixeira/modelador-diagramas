@@ -20,14 +20,15 @@ export default class LoadDiagram extends Component {
    }
 
    saveChangesToDatabase = async e => {
-      const data = await api.put("1", {
+      const data = await api.put(`atualizar/${this.context.id}`, {
          data: this.state.diagramData
       })
+      console.log(data)
       if (data.status === 200) console.log("sucesso")
    }
 
    async componentDidMount() {
-      const response = await api.get("1");
+      const response = await api.get(`buscar/${this.context.id}`);
       const diagramData = response.data
       this.setState({ diagramData, showData: true })
    }

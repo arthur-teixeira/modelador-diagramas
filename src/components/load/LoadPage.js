@@ -12,7 +12,7 @@ export default class LoadPage extends Component {
    }
 
    async componentDidMount() {
-      const response = await api.get()
+      const response = await api.get("listar")
       const data = response.data
       this.setState({ data });
       console.log(this.state.data)
@@ -24,9 +24,9 @@ export default class LoadPage extends Component {
             <LoadHeader />
             <GridWrapper>
                {this.state.data.map((item) => (
-                  <Link key={item.id} to={`/canvas/${item.id}`}>
+                  <Link key={item._id} to={`/canvas/${item._id}`}>
                      <Card>
-                        <h3>{item.title}</h3>
+                        <h3>{item.nome}</h3>
                      </Card>
                   </Link>
                ))}
