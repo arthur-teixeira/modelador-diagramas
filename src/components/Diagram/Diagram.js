@@ -22,7 +22,8 @@ class Diagram extends Component {
    }
 
    state = {
-      serial: {}
+      serial: {},
+      shouldUpdateDiagram: false
    }
 
    saveDiagram = async e => {
@@ -31,7 +32,19 @@ class Diagram extends Component {
          data,
          name: "diagrama"
       });
-      console.log(response)
+      this.setState({ shouldUpdateDiagram: true })
+   }
+
+   updateDiagram = async e => {
+      const data = this.engine.getDiagramModel().serializeDiagram();
+      const response = await api.put('atualizar?update=true', {
+         data,
+         name: "diagrama"
+      })
+   }
+
+   handleSave = e => {
+      this.state.shouldUpdateDiagram ? this.updateDiagram : this.saveDiagram
    }
 
    handleDrop = e => {
@@ -60,7 +73,7 @@ class Diagram extends Component {
    render() {
       return (
          <>
-            <Button onClick={this.saveDiagram}>Salvar diagrama</Button>
+            <Button onClick={this.handleSave}>Salvar diagrama</Button>
             <div className="content">
                <div
                   className="diagram-layer"
