@@ -11,16 +11,19 @@ export default class LoadPage extends Component {
       data: []
    }
 
-   async componentDidMount() {
+   async getStateFromAPI(){
       const response = await api.get("listar")
       const data = response.data
       this.setState({ data });
-      console.log(this.state.data)
    }
 
-   handleDelete = async (id, e) => {
+   async componentDidMount() {
+      await this.getStateFromAPI()
+   }
+
+   handleDelete = async id => {
       const data = await api.delete(`remover/${id}`);
-      console.log(data)
+      await this.getStateFromAPI();
    }
 
    render() {
@@ -30,13 +33,12 @@ export default class LoadPage extends Component {
             <GridWrapper>
                {this.state.data.map((item) => (
                <>
-                  <Link key={item._id} to={`/canvas/${item._id}`}>
-                     <Card>
+                  <Card>
+                     <Link key={item._id} to={`/canvas/${item._id}`}>
                         <h3>{item.nome}</h3>
-                     </Card>
-                  </Link>
-                  <Button onClick={e => this.handleDelete(item._id, e)}>Deletar</Button>
-               
+                     </Link>
+                     <Button onClick={() => this.handleDelete(item._id)}>Deletar</Button>
+                  </Card>
                </>
                ))}
             </GridWrapper>

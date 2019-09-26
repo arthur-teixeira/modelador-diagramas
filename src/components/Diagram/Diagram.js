@@ -15,23 +15,28 @@ import { Button } from '../styled'
 import 'storm-react-diagrams/dist/style.min.css'
 
 class Diagram extends Component {
+
+   state = {
+      shouldUpdate: false
+   }
+
    componentWillMount() {
       this.engine = new DiagramEngine();
       this.engine.registerNodeFactory(new DefaultNodeFactory());
       this.engine.registerLinkFactory(new DefaultLinkFactory());
    }
 
-   state = {
-      serial: {}
-   }
-
    saveDiagram = async e => {
       const data = this.engine.getDiagramModel().serializeDiagram();
-      const response = await api.post('inserir', {
-         data,
-         name: "diagrama"
-      });
-      console.log(response)
+      if(!this.state.shouldUpdate){
+         const response = await api.post('inserir', {
+            data,
+            nome: "diagrama"
+         });
+         this.setState({shouldUpdate: true})
+      } else {
+         const response = await api.put('atualizar',{ data });
+      }
    }
 
    handleDrop = e => {
@@ -65,9 +70,7 @@ class Diagram extends Component {
                <div
                   className="diagram-layer"
                   onDrop={this.handleDrop}
-                  onDragOver={e => {
-                     e.preventDefault();
-                  }}>
+                  onDragOver={e => e.preventDefault()}>
                   <DiagramWidget className="srd-canvas" diagramEngine={this.engine} />
                </div>
             </div>
