@@ -26,7 +26,6 @@ class Diagram extends Component {
       this.engine.registerLinkFactory(new DefaultLinkFactory());
    }
 
-<<<<<<< HEAD
    saveDiagram = async e => {
       const data = this.engine.getDiagramModel().serializeDiagram();
       if(!this.state.shouldUpdate){
@@ -38,32 +37,6 @@ class Diagram extends Component {
       } else {
          const response = await api.put('atualizar',{ data });
       }
-=======
-   state = {
-      serial: {},
-      shouldUpdateDiagram: false
-   }
-
-   saveDiagram = async e => {
-      const data = this.engine.getDiagramModel().serializeDiagram();
-      const response = await api.post('inserir', {
-         data,
-         name: "diagrama"
-      });
-      this.setState({ shouldUpdateDiagram: true })
-   }
-
-   updateDiagram = async e => {
-      const data = this.engine.getDiagramModel().serializeDiagram();
-      const response = await api.put('atualizar?update=true', {
-         data,
-         name: "diagrama"
-      })
-   }
-
-   handleSave = e => {
-      this.state.shouldUpdateDiagram ? this.updateDiagram : this.saveDiagram
->>>>>>> 44c091612e242ab4fa747098dcb3053097c9e999
    }
 
    handleDrop = e => {
